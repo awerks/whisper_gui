@@ -5,7 +5,6 @@ import requests
 import os
 import subprocess
 import threading
-from PIL import Image, ImageTk
 
 WHISPER_API_URL = "https://api.openai.com/v1/audio/transcriptions"
 API_KEY = os.getenv("OPENAI_TRANSCRIPTION_KEY")

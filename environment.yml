@@ -1,0 +1,7 @@
+name: transcription
+channels:
+  - defaults
+dependencies:
+  - tk
+  - python==3.11.10
+  - requests
