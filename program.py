@@ -104,7 +104,7 @@ def center_window(root, width=600, height=500):
 root = tk.Tk()
 center_window(root, 600, 500)
 
-root.title("Whisper Transcription Tool")
+root.title("Whisper GUI")
 # root.geometry("600x500")
 root.configure(background="#1e1e1e")
 root.resizable(False, False)
