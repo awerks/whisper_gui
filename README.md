@@ -27,13 +27,13 @@ A simple GUI application that uses OpenAI's Whisper API to transcribe audio file
 2. **Navigate to the project directory:**
 
    ```bash
-   cd transcription
+   cd whisper_gui
    ```
 
 3. **Create and activate the Conda environment:**
 
    ```bash
-   conda env create -f environment.yml
+   conda env create -n transcription -f environment.yml
    conda activate transcription
    ```
 
