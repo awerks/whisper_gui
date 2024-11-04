@@ -1,15 +1,14 @@
 import tkinter as tk
 import requests
 import os
+import json
 import subprocess
-import threading
 from platform import system
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from typing import Any
 from datetime import datetime
 from utils import write_srt, compress_file, download_url, extract_audio
-import json
 
 WHISPER_API_URL: str = "https://api.openai.com/v1/audio/transcriptions"
 API_KEY: str = os.getenv("OPENAI_TRANSCRIPTION_KEY")
@@ -39,7 +38,6 @@ def switch_language(lang: str) -> None:
 
 def update_ui_texts() -> None:
     root.title(translate("title"))
-    print(translate("title"))
     transcribe_button.config(text=translate("transcribe_button"))
     copy_button.config(text=translate("copy_button"))
     file_path_label.config(text=translate("file_or_url_label"))
@@ -167,7 +165,6 @@ def transcribe_file() -> None:
             return
 
     send_transcription_request(file_path_or_url, is_compressed)
-    # threading.Thread(target=send_transcription_request, args=(file_path_or_url, is_compressed)).start()
 
 
 def copy_to_clipboard() -> None:
