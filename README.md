@@ -19,6 +19,7 @@ A simple GUI application that uses OpenAI's Whisper API to transcribe audio file
 - `tk`
 - `requests`
 - `ffmpeg` (for audio compression)
+- `yt-dlp` (for video downloading)
 
 ## Installation
 
@@ -51,7 +52,17 @@ A simple GUI application that uses OpenAI's Whisper API to transcribe audio file
 
    - On Windows, download from [FFmpeg website](https://ffmpeg.org/download.html).
 
-5. **Set up the OpenAI API key:**
+5. **Install `yt-dlp`:**
+
+   - On macOS using Homebrew:
+
+     ```bash
+     brew install yt-dlp
+     ```
+
+   - On Windows, download from [yt-dlp releases](https://github.com/yt-dlp/yt-dlp/releases).
+
+6. **Set up the OpenAI API key:**
 
    - Obtain your OpenAI API key and set it as an environment variable:
 
