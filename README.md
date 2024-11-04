@@ -9,6 +9,10 @@ A simple GUI application that uses OpenAI's Whisper API to transcribe audio file
 - Displays transcription results within the application.
 - Copy transcription text to the clipboard.
 
+# GUI
+
+![Whisper Transcription Tool GUI](images/gui.png)
+
 ## Requirements
 
 - Python 3.11.10
