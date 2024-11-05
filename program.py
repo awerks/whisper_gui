@@ -61,7 +61,7 @@ def select_file() -> None:
         file_path_entry.insert(0, file_path_or_url)
 
 
-def send_transcription_request(file_path_or_url: str, is_compressed: bool = False) -> None:
+def send_transcription_request(file_path_or_url: str, remove_file: bool = False) -> None:
     """Send a transcription request to the Whisper API synchronously."""
     status_label.config(text=translate("transcribing_wait"), foreground="lightblue")
     root.update()
@@ -101,7 +101,7 @@ def send_transcription_request(file_path_or_url: str, is_compressed: bool = Fals
         messagebox.showerror(translate("error"), translate("transcription_error_occurred").format(error=e))
         status_label.config(text=translate("transcription_error_occurred"), foreground="red")
     finally:
-        if is_compressed:
+        if remove_file:
             os.remove(file_path_or_url)
 
 
@@ -109,7 +109,7 @@ def transcribe_file() -> None:
     """Handle file selection, URL download and audio extraction, compression if needed, and start transcription."""
     file_path_or_url: str = file_path_entry.get()
     compressed_path: str = "compressed_audio.mp3"
-    is_compressed: bool = False
+    remove_file: bool = False
     if not file_path_or_url:
         messagebox.showerror(translate("error"), translate("no_file_selected_error"))
         return
@@ -123,7 +123,7 @@ def transcribe_file() -> None:
             status_label.config(text=translate("downloading_video"), foreground="lightblue")
             root.update()
             file_path_or_url = download_url(file_path_or_url, video_path)
-
+            remove_file = True
         except subprocess.CalledProcessError as e:
             messagebox.showerror(
                 translate("download_error"),
@@ -133,8 +133,8 @@ def transcribe_file() -> None:
             return
 
     if any(ext in file_path_or_url for ext in ["mp4", "mkv", "webm", "avi", "flv", "mov", "wmv"]):
-        audio_path = os.path.join(OUTPUT_DIR, f"extracted_audio_{current_time}.mp3")
         try:
+            audio_path = os.path.join(OUTPUT_DIR, f"extracted_audio_{current_time}.mp3")
             status_label.config(text=translate("extracting_audio"), foreground="lightblue")
             root.update()
             file_path_or_url = extract_audio(file_path_or_url, audio_path)
@@ -155,7 +155,7 @@ def transcribe_file() -> None:
             status_label.config(text=translate("compressing_file"), foreground="lightblue")
             root.update()
             file_path_or_url = compress_file(file_path_or_url, compressed_path)
-            is_compressed = True
+            remove_file = True
         except subprocess.CalledProcessError as e:
             messagebox.showerror(
                 translate("compression_error"),
@@ -164,7 +164,7 @@ def transcribe_file() -> None:
             status_label.config(text=translate("compression_failed"), foreground="red")
             return
 
-    send_transcription_request(file_path_or_url, is_compressed)
+    send_transcription_request(file_path_or_url, remove_file=remove_file)
 
 
 def copy_to_clipboard() -> None:
@@ -191,6 +191,7 @@ center_window(root, 600, 500)
 
 # Update UI elements with translations
 root.title(translate("title"))
+
 
 header_label: ttk.Label = ttk.Label(root, text=translate("title"), style="Header.TLabel")
 header_label.pack(pady=10)
