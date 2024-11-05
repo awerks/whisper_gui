@@ -42,7 +42,7 @@
     "subtitles_checkbox": "Субтитри",
     "no_file_selected_error": "Будь ласка, виберіть файл або URL для транскрибування.",
     "compression_notice": "Повідомлення про стиснення",
-    "compression_message": "Файл більше 25 МБ і буде стиснутий.",
+    "compression_message": "Файл важить понад 25 МБ і буде стиснутий.",
     "compression_error": "Помилка стиснення",
     "compression_error_message": "Сталася помилка під час стиснення файлу: {error}",
     "downloading_video": "Завантаження відео...",
