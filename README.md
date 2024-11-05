@@ -104,4 +104,4 @@ Distributed under the MIT License.
 
 - Powered by [OpenAI's Whisper API](https://github.com/openai/whisper).
 - [FFmpeg](https://ffmpeg.org/).
-- [yt-dlp](https://github.com/yt-dlp/yt-dl)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
